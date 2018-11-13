@@ -10,7 +10,7 @@
 				<div class="product-info">
 					<h2><%= product.name%></h2>
 					<p><%= product.description%></p>
-					<form class="ajax-form" action="" method="post">
+					<form class="ajax-form" action="/cart/add" method="post">
 						<p>
 							<input type="hidden" name="product" value="<%=product.id%>">
 							<input type="hidden" name="mail" value="alpha_test@test.com">

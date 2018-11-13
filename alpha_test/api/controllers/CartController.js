@@ -6,7 +6,9 @@
  */
 
 module.exports = {
-  
+  get: async function (argument) {
+  	
+  },
 
 };
 

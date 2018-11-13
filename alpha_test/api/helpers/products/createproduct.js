@@ -36,7 +36,7 @@ module.exports = {
   fn: async function(inputs,exits){
     var productObj = {
       name: inputs.name,
-      mail: inputs.description,
+      description: inputs.description,
       price: inputs.price,
       image: inputs.image,
     };    

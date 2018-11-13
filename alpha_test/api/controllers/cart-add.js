@@ -52,7 +52,7 @@ module.exports = {
         products:newProd
       }).fetch();
 
-      return exits.success(newCart);
+      return exits.success({view:'pages/cart/view',cart:newCart});
     }
 
     console.log(cart);
