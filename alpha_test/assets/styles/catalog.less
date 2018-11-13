@@ -1,0 +1,17 @@
+@link-color:        #CCC;
+@link-color-hover:  darken(@link-color, 10%);
+
+.product-container{
+	a.product-link{
+		color: @link-color;
+		display: block;
+		text-decoration: none;
+	}
+	a.product-link:hover{
+		color: @link-color-hover;
+		.product-image{
+			opacity: 0.8;
+		}
+	}
+}
+
