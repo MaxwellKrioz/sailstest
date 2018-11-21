@@ -51,13 +51,13 @@ module.exports.datastores = {
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
     adapter: 'sails-mongo',
-    url: 'mongodb://root@localhost:27019/default',
+    url: 'mongodb://root@localhost:27017/default',
 
   },
 
   mongoDB: {
     adapter: 'sails-mongo',
-    url: 'mongodb://root@localhost:27019/delta_test',
+    url: 'mongodb://root@localhost:27017/delta_test',
     schema: true,    
   },
 

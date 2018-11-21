@@ -1,20 +1,20 @@
 [	
 	{
-		"name":"Vestido 1",
+		"name":"Red Dress",
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 125.50,
 		"image": "/cdn/dress-01.jpg",
 		"sizes": [{"XS":3},{"S":1}]		
 	},
 	{
-		"name":"Vestido 2",
+		"name":"White Dress",
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 299.99,
 		"image": "/cdn/dress-02.jpg",
 		"sizes": [{"XS":3},{"S":1}]
 	},
 	{
-		"name":"Vestido 3",
+		"name":"Blue Dress",
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 340,
 		"stock": 2,
@@ -22,14 +22,14 @@
 		"sizes": [{"XS":3},{"S":1}]
 	},
 	{
-		"name":"Vestido 4",
+		"name":"Purple Dress",
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 299.99,
 		"image": "/cdn/dress-04.jpg",
 		"sizes": [{"XS":3},{"S":1}]
 	},
 	{
-		"name":"Vestido 5",
+		"name":"Cream Dress",
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 299.99,
 		"image": "/cdn/dress-05.jpg",

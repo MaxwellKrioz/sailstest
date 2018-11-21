@@ -22,6 +22,10 @@ module.exports = {
         orders: {
             collection:'orders',
             via: 'customer'
+        },
+        cart: {
+            collection: "cart",
+            via: "customer"
         }
     },
     datastore: "mongoDB"

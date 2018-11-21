@@ -17,6 +17,9 @@ module.exports = {
         },
         customer:{
             model: "customers"
+        },
+        payment:{
+            type: "json"
         }
     },
     datastore: "mongoDB"

@@ -29,6 +29,7 @@ module.exports = {
       name: inputs.name,
       lastName: inputs.lastName,
       password: inputs.password,
+      cart:[]
     };    
     var customerRegistry = await Customers.create(productObj)
     //.intercept('E_UNIQUE', 'sameItem')

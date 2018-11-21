@@ -1,6 +1,7 @@
 module.exports = {
   inputs: {
-        mail: {type: 'string',required: false,},      
+        mail: {type: 'string',required: false,},
+        id:{type:'string',required:false}      
   },
 
   exits: {
@@ -10,8 +11,15 @@ module.exports = {
     },
   },
 
-  fn: async function(inputs,exits){   
-    var customerRegistry = await Customers.findOne({mail:inputs.mail});
+  fn: async function(inputs,exits){
+    if(!inputs.mail && !inputs.id){
+      return  exits.invalid();
+    }
+    if(inputs.id){
+      var customerRegistry = await Customers.findOne({id:inputs.id});      
+    }else{
+     var customerRegistry = await Customers.findOne({mail:inputs.mail});
+    }
     //.intercept('E_UNIQUE', 'sameItem')
     if(!customerRegistry){
       return exits.success(false);

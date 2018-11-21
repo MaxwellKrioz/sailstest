@@ -1,34 +1,37 @@
-<div class="row">
-	<div class="col-xs-12">
-	<%if(product && sizes){
-		%>		
-		<div class="row">
-			<div class="col col-12 col-sm-6">
-				<img class="img-fluid" src="/images<%= product.image%>">		
-			</div>
-			<div class="col col-12 col-sm-6">
-				<div class="product-info">
-					<h2><%= product.name%></h2>
-					<p><%= product.description%></p>
-					<form class="ajax-form" action="/cart/add" method="post">
-						<p>
+<div class="col-xs-12">
+<%if(product && sizes){
+	%>		
+	<div class="row">
+		<div class="col col-12 col-sm-6">
+			<img class="img-fluid" src="/images<%= product.image%>">		
+		</div>
+		<div class="col col-12 col-sm-6">
+			<div class="product-info">
+				<h3><%= product.name%></h3>
+				<hr/>
+				<p><%= product.description%></p>
+				<form class="" action="/cart/add" method="post">
+						<div class="input-group col-12 col-sm-6 mb-3">
 							<input type="hidden" name="product" value="<%=product.id%>">
 							<input type="hidden" name="mail" value="alpha_test@test.com">
 							<input type="hidden" name="quantity" value="1">
-							<label for="size">Selecciona una talla</label><br/>
-							<select name="size" id="size">
+							<div class="input-group-prepend">
+						    <label class="input-group-text" for="size">Choose a size</label>
+						  </div>
+							<select class="custom-select" name="size" id="size">
 								<%sizes.forEach(function(size){%>
 								<option value="<%= size.code%>"><%=size.code%></option>
 								<%});%>
 							</select>
-						</p>
-						<button type="submit" class="btn btn-primary">Comprar!</button>
-					</form>
-				</div>
+						</div>
+						<div class="input-group col-12 col-sm-6">
+							<button type="submit" class="btn btn-dark">Add to Cart!</button>
+						</div>						
+				</form>
 			</div>
 		</div>
-	<% }else{%>
-	<h2>Invalid product</h2>
-	<% } %>
 	</div>
+<% }else{%>
+<h2>Invalid product</h2>
+<% } %>
 </div>

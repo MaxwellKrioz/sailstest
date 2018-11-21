@@ -8,8 +8,14 @@
 module.exports = {
 
     attributes: {
-        totalCost: {type: 'float'},
-        discount: {type: 'float'},
+        totalCost: {
+            type: "number",
+            columnType: 'float'
+        },
+        discount: {
+            columnType: 'float',
+            type: 'float'
+        },
         products:{
            type: 'json'
         },
@@ -17,7 +23,8 @@ module.exports = {
             type:"boolean"
         },
         customer:{
-            model: "customers"
+            model: "customers",
+            unique: true
         }
     },
     datastore: "mongoDB"

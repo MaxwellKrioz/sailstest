@@ -23,7 +23,6 @@ module.exports = {
 	    "1234");
     req.session.userId = customer.id;
 		await Promise.all(entries.map(async (entry) => {
-			console.log(entry.name);
 			var product = await sails.helpers.products.createproduct(entry.name,entry.description,entry.price,entry.image);
 			var sizes = await sails.helpers.products.createsizes(entry.sizes,product.id);
 		})).then(function(){

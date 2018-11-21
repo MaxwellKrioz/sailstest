@@ -1,18 +1,21 @@
 <div class="row">
 <% if(products){ 
-	products.forEach(function(product){%>
-	<div class="col-12 col-sm-3">
-		<div class="product-container">
-			<a class="product-link" href="/products/<%=product.id%>">				
-				<div class="product-image">
-					<img class="img-fluid" src="/images<%=product.image%>">
-				</div>
-				<p>
-					<h4 class="product-title"><%=product.name%></h4>
-					<span class="product-description"><%=product.description%></span>
-				</p>
-			</a>
-		</div>
+	products.forEach(function(product){
+		%>
+	<div class="col-12 col-sm-3 product-container">
+		<a class="product-link" href="/products/<%=product.id%>">				
+			<div class="product-image">
+				<img class="img-fluid" src="/images<%=product.image%>">
+			</div>
+			<p>
+				<h3 class="product-title"><%=product.name%></h3>
+				<hr/>
+				<span class="product-description"><%=product.description%></span>
+			</p>
+			<p class="text-right">
+				<span><b>$<%=product.price%></b></span>
+			</p>
+		</a>
 	</div>
 <% }); }else{%>
 	<h2>IT IS EMPTY!</h2>
