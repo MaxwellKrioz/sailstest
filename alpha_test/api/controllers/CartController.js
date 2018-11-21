@@ -6,13 +6,14 @@
  */
 
 module.exports = {
-  get: async function (req, res) {  	
+  get: async function (req, res) {
+
+
   	var secId = req.session.userId;
   	var myCustomer = await sails.helpers.customer.getcustomer(false,secId);
   	var myCart = await sails.helpers.cart.get(myCustomer.mail);
   	var productsDetail = [];
   	if(myCart){
-  		//console.log("wot",myCart);
   		myCart.products.sort('createdAt DESC');
   		await Promise.all(myCart.products.map(async (entry) => {
   			var product = await sails.helpers.products.getproduct(entry.product);
@@ -27,12 +28,12 @@ module.exports = {
 							 	image: product.image
 		  			});
 		  		}
-  			});  			
+  			});
 			})).then(function(){
 				myCart.products = productsDetail;
   			return res.view('pages/cart/view',{cart:myCart});
 			});
-  	}  	
+  	}
   },
   update: async function(req,res){
   	var inputs = req.allParams();
@@ -53,13 +54,16 @@ module.exports = {
  		}
 
  		return res.redirect('/cart');
-  	
+
   },
   add: async function (req, res){
   	var inputs = req.allParams();
   	var secId = req.session.userId;
   	var myCustomer = await sails.helpers.customer.getcustomer(false,secId);
-  	var cart = await sails.helpers.cart.add(myCustomer.mail,inputs.product,inputs.quantity,inputs.size);
+  	var cart = await sails.helpers.cart.add(myCustomer.mail,inputs.product,inputs.quantity,inputs.size)
+    .tolerate("outOfStock", () => {
+      return res.redirect('/cart',{message:"boop",error:err});
+    });
   	return res.redirect('/cart');
   },
 
@@ -68,9 +72,8 @@ module.exports = {
   	console.log(inputs);
   	var secId = req.session.userId;
   	var myCustomer = await sails.helpers.customer.getcustomer(false,secId);
-  	var cart = await sails.helpers.cart.remove(myCustomer.mail,inputs.product,inputs.quantity,inputs.size);
+  	var cart = await sails.helpers.cart.remove(myCustomer.mail,inputs.id,inputs.quantity,inputs.size);
   	return res.redirect('/cart');
   }
 
 };
-

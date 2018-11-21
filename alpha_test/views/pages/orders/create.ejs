@@ -1,6 +1,6 @@
 <div class="col-xs-12">
 <%if(cart && cart.products){
-	%>		
+	%>
 	<div class="row justify-content-md-center">
 		<div class="col col-10">
 			<div class="row">
@@ -11,12 +11,12 @@
 								<tr>
 									<th scope="col col-2">Products</th>
 									<th scope="col"></th>
-									<th scope="col"></th>							
+									<th scope="col"></th>
 									<th scope="col">price</th>
 								</tr>
 							</thead>
 							<tbody>
-								<%						
+								<%
 								cart.products.forEach(function(product){%>
 									<tr>
 										<td class="align-middle"><a class="product-link" href="/products/<%=product.id%>"><img class="img-fluid" src="/images<%=product.image%>" style="max-width:40px;"></a></td>
@@ -24,10 +24,19 @@
 										<td class="align-middle">x <%=product.quantity%></td>
 										<td class="align-middle"><b>$<%=product.price*product.quantity%></b></td>
 									</tr>
-								<%	});%>				
+								<%	});%>
 							</tbody>
 						</table>
 					</small>
+					<br/>
+					<strong>
+						<table class="col-4 table float-right text-right">
+							<tbody>
+								<td>Total</td>
+								<td><%=cart.totalCost%></td>
+							</tbody>
+						</table>
+					</strong>
 				</div>
 				<div class="col col-6">
 					<form>
@@ -37,7 +46,7 @@
 		          <select class="form-control" id="exampleFormControlSelect1">
 					      <option value="1">Bank 01</option>
 					      <option value="2">Bank 02</option>
-					    </select>				
+					    </select>
 					  </div>
 						<div class="row mb-3">
 					    <div class="col-9">
@@ -49,7 +58,7 @@
 					    <div class="col-12 mt-3">
 					    	<input type="text" class="form-control" placeholder="Expiration date">
 					    </div>
-					  </div>						
+					  </div>
 					  <div class="form-group">
 					    <label for="name">Card owner</label>
 					    <input type="text" class="form-control" id="name" placeholder="Jhon Doe">
@@ -62,4 +71,4 @@
 			</div>
 		</div>
 	</div>
-<%}%>	
+<%}%>

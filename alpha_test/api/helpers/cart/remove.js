@@ -7,7 +7,7 @@ module.exports = {
         product:{
           type: "string",
           required: true,
-        },      
+        },
         quantity: {
           type: "number",
           required: true,
@@ -37,29 +37,29 @@ module.exports = {
     //var cart = await Cart.find({}).populate('customer', {where: { mail: inputs.mail }});
     var req = this.req;
     var res = this.res;
-    
+
     var customer = await Customers.findOne({mail: inputs.mail}).populate("cart");
     /*var cart = await Customers.findOne({mail: inputs.mail})
         .populate("cart")
         .exec(console.log);*/
 
-    if (!customer.cart || customer.cart.length <= 0){      
+    if (!customer.cart || customer.cart.length <= 0){
       return exits.invalid({message:"Error loading customer's cart"});
     }else{
       var cart_id = customer.cart.id;
       if(customer.cart[0].products){
         var tmpProducts = customer.cart[0].products;
 
-        var existingPrd = tmpProducts.find(foo => foo.product === inputs.product);        
+        var existingPrd = tmpProducts.find(foo => foo.product === inputs.product);
         if(existingPrd){
           var existingSize = existingPrd.sizes.find(foo => foo.size === inputs.size);
           if(existingSize){
             if(existingSize.quantity-inputs.quantity <= 0){
-              var filtered = existingPrd.sizes.filter(function(foo) { 
-                 return foo.size !== inputs.size;  
+              var filtered = existingPrd.sizes.filter(function(foo) {
+                 return foo.size !== inputs.size;
               });
               existingPrd.sizes = filtered;
-            }else{          
+            }else{
               existingSize.quantity -= inputs.quantity;
             }
           }else{
@@ -72,12 +72,11 @@ module.exports = {
           });
         }
 
-        var newCart = await Cart.update({id:cart_id}).set({products:tmpProducts}).fetch();
-        console.log("Update",newCart);      
+        var newCart = await Cart.update({id:cart_id}).set({products:tmpProducts}).fetch();     
       }else{
         return exits.success(customer.cart);
-      }           
-      return exits.success(newCart); 
+      }
+      return exits.success(newCart);
     }
     return exits.success(cart);
   }
