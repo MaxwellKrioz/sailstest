@@ -38,7 +38,7 @@ module.exports = {
     var req = this.req;
     var res = this.res;
 
-    var customer = await Customers.findOne({mail: inputs.mail}).populate("cart");
+    var customer = await Customers.findOne({mail: inputs.mail}).populate("cart",{where: {active: true}});
     var product = await Product.findOne({id:inputs.product}).populate("sizes");
     var sizeFind = product.sizes.find(o => o.code === inputs.size);
     var entryCost = product.price * inputs.quantity;

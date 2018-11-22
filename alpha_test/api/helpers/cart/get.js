@@ -1,6 +1,7 @@
 module.exports = {
   inputs: {
-        mail: {type: 'string',required: false,},      
+      mail: {type: 'string',required: false,},
+      id: {type: 'string',required: false,},      
   },
 
   exits: {
@@ -11,11 +12,19 @@ module.exports = {
   },
 
   fn: async function(inputs,exits){   
-    var customer = await Customers.findOne({mail: inputs.mail}).populate("cart",{ sort: 'createdAt ASC' });        
-    var cart = customer.cart[0];  
-    if(!cart){
-      return exits.success(false);
+    if(!inputs.mail && !inputs.id){
+      return  exits.invalid();
     }
-    return exits.success(cart);
+    if(inputs.id){
+      var cart = await Cart.findOne({id: inputs.id});
+      return exits.success(cart);
+    }else{
+      var customer = await Customers.findOne({mail: inputs.mail}).populate("cart",{ sort: 'createdAt ASC',where: {active: true}});         
+    }
+    if(!customer.cart[0]){
+      return exits.success(false);
+    }else{
+      return exits.success(customer.cart[0]);
+    }
   }
 };

@@ -7,8 +7,6 @@
 
 module.exports = {
   get: async function (req, res) {
-
-
   	var secId = req.session.userId;
   	var myCustomer = await sails.helpers.customer.getcustomer(false,secId);
   	var myCart = await sails.helpers.cart.get(myCustomer.mail);
@@ -33,7 +31,9 @@ module.exports = {
 				myCart.products = productsDetail;
   			return res.view('pages/cart/view',{cart:myCart});
 			});
-  	}
+  	}else{
+  		return res.view('pages/cart/view',{cart:false});
+  	}  	
   },
   update: async function(req,res){
   	var inputs = req.allParams();

@@ -27,10 +27,11 @@ module.exports = {
     // If no users were found, trigger the `noUsersFound` exit.
     if (!sizes || sizes.length === 0){
        return exits.success(false);
+    }else{
+      return exits.success(sizes);
     }
 
-    // Otherwise return the records through the `success` exit.
-    return exits.success(sizes);
+    // Otherwise return the records through the `success` exit.    
     
   }
 };

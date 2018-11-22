@@ -23,8 +23,7 @@ module.exports = {
             type:"boolean"
         },
         customer:{
-            model: "customers",
-            unique: true
+            model: "customers",            
         }
     },
     datastore: "mongoDB"

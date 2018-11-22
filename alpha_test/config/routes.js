@@ -26,7 +26,7 @@ module.exports.routes = {
   'GET /order/create' :'OrderController.create',
   'GET /order/:id' :'OrderController.get',
 
-  'GET /order/success' :'OrderController.finish',
+  'GET /order/success/:id' :'OrderController.finish',
 
   'POST /order/validation' : 'OrderController.validation',
 

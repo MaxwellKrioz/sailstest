@@ -7,11 +7,9 @@ module.exports = {
     }
   },
 
-
   exits: {
 
   },
-
 
   fn: async function (inputs, exits) {
   	const jsonfile = require('jsonfile');

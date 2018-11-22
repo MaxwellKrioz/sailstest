@@ -13,7 +13,7 @@ module.exports = {
 
     var inputs = req.body;
     var customerId = req.session.userId;
-    var customer = await Customers.findOne({id:customerId}).populate("cart");
+    var customer = await Customers.findOne({id:customerId}).populate("cart",{where: {active: 'true'}});
     var cart = customer.cart[0];
     var result = [];
 
@@ -28,35 +28,31 @@ module.exports = {
 		);    
 
 		var order = false;
-		var status = '';
+		var status = 'success';
 		var message = "Everything Good";
 
 		if(payment){
-
 			order = await sails.helpers.orders.create(
 				cart.id,
 				customer.id,
 				payment
 			).tolerate(function(err,val){
-				return res.ok({
-	        status: "error",
-	        response: result,
-	        message:err
-		    });
+				message="Error:"+err;
+				status ='error';
 			});
 		}else{
-			return res.ok({
-        status: "error",
-        response: result,
-        message:"Invalid Payment method"
-	    });
+				status ='error';
+        message="Invalid Payment method";
 		}
+		
+		return res.ok({
+      status: status,
+      response: order,
+      message:message
+  	});
+		
 
-    return res.ok({
-        status: "success",
-        response: order,
-        message:"Order created"
-    });
+    
   },
   create: async function(req,res){ 	
 
@@ -91,16 +87,31 @@ module.exports = {
   finish: async function(req,res){
   	var inputs = req.body;
   	var secId = req.session.userId;
-
-  	return "variantus controllus";
+  	if(req.params && req.params.id){
+  		var order = await Orders.findOne({id:req.params.id});
+			if(order && order.status =='success'){  		  		
+				await Orders.update({id:req.params.id}).set({status:"placed"});
+	  		return res.view('pages/orders/success',{order:order});
+	  	}else{
+	  		res.redirect("/order/list");
+	  	}
+  	}else{
+  		res.redirect("/order/list");
+  	}  	
   },
 
 	list: async function(req, res){
 		var customerId = req.session.userId;
-    var customer = await Customers.findOne({id:customerId}).populate("orders");    
+    var customer = await Customers.findOne({id:customerId}).populate("orders");        
     if(customer.orders && customer.orders.length > 0){
-    	console.log(customer.orders);
-    	return res.view('pages/customer/orders',{orders:false});
+    	await Promise.all(customer.orders.map(async (entry) => { 
+    		var cart = await sails.helpers.cart.get(false,entry.cart);    		
+    		entry.cartValue=cart;
+    	})).then(function(){    		
+    		return res.view('pages/orders/list',{orders:customer.orders});		
+    	});
+    }else{
+    	return res.view('pages/orders/list',{orders:false});
     }
 		
 	},

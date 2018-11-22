@@ -32,8 +32,9 @@ module.exports = {
     //var cart = await Cart.find({}).populate('customer', {where: { mail: inputs.mail }});
     var req = this.req;
     var res = this.res;
+    var customer = await Customers.findOne({mail: inputs.mail}).populate("cart",{where: {active: true}});
 
-    var customer = await Customers.findOne({mail: inputs.mail}).populate("cart");
+
     var product = await Product.findOne({id:inputs.product}).populate("sizes");
     var sizeFind = product.sizes.find(o => o.code === inputs.size);
     var entryCost = product.price * inputs.quantity;
@@ -58,17 +59,14 @@ module.exports = {
         totalCost: totalCost,
         discount: 0,
         customer: customer.id,
-        products:newProd
+        products:newProd,
+        active: true
       }).fetch();
-
       await Sizes.update({id:sizeId}).set({stock:(maxReq-inputs.quantity)});
-
       return exits.success(newCart);
-    }else{
-
-      var cart_id = customer.cart.id;
-
+    }else{      
       if(customer.cart[0].products){
+        var cart_id = customer.cart[0].id;
         var tmpProducts = customer.cart[0].products;
 
         var existingPrd = tmpProducts.find(o => o.product === inputs.product);
@@ -88,10 +86,11 @@ module.exports = {
         var totalCost = customer.cart[0].totalCost + entryCost;
         var newCart = await Cart.update({id:cart_id}).set({products:tmpProducts,totalCost:totalCost}).fetch();
         await Sizes.update({id:sizeId}).set({stock:(maxReq-inputs.quantity)});
+        return exits.success(customer.cart);
       }else{
         return exits.success(customer.cart);
       }
     }
-    return exits.success(customer.cart);
+    
   }
 };

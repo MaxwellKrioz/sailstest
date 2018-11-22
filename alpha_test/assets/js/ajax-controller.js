@@ -9,12 +9,22 @@ function form_data($form){
     return indexed_array;
 }
 
+function ajax_form(action,method,data){
+
+}
+
+
+function ajax_request(){
+
+}
+
+
 $(function(){
-  console.log("ready");
+  console.log("ready"); 
   $("form.ajax-form").on("submit", function(e){
     if(e){
       e.preventDefault();
-      e.stopPropagation();
+      e.stopPropagation();            
     }
     var myForm = $(this);
     var action = myForm.attr("action");
@@ -23,14 +33,16 @@ $(function(){
     var data = form_data(myForm);
 		var myButton = $(myForm).find('button[type="submit"]');
 
-		myButton.addClass("disabled");
+		myButton.addClass("disabled");		
 
     io.socket.post('/order/validation', data, function (resData, jwres){
 			myButton.removeClass("disabled");
-      if(resData.response){
-        //console.log("redirect to: /order/success/"+resData.response.id);
-  			window.location.replace('/order/success/'+resData.response.id);
-      }
+			window.location.replace("/order/list");
     });
+    /*io.socket.get('/order/validation', function gotResponse(data, jwRes){
+	  	console.log("emarcys protopopoto",jwRes);
+	  });*/
+//    var responseType= myForm.data("response-type");
+
   });
 });

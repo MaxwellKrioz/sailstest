@@ -1,8 +1,26 @@
 <div class="row">
   <div class="col-12">
   	<div class="row justify-content-md-center">
-  	   <% if(order){ %>
-          
+  	   <% if(order){ 
+  	   	console.log("HAHA!",order);
+  	   	%>
+          <div class="col-8">
+          		<div class="card" style="">
+							  <div class="card-body bg-success">
+							    <h3 class="card-title">SUCCESS!</h3>
+							    <p class="card-text">Your pruchase is complete!</p>
+							  </div>
+							  <div class="card-body">
+							    <p>Cras justo odio
+							    	<br/>Dapibus ac facilisis in
+							    Vestibulum at eros
+							    </p>
+							  </div>
+							  <div class="card-body">
+							    <a href="/" class="card-link">Buy More!</a>
+							  </div>
+							</div>
+          </div>
        <%} %>
     </div>
   </div>

@@ -40,10 +40,6 @@ module.exports = {
   			o.year	== inputs.year &&
   			o.month == inputs.month
 			);
-  		console.log("DARTAÑAN---------------------------------------");
-  		console.log(entries);
-  		console.log(inputs);
-			console.log(isValid);
       // Do something magical and return a valid response      
       setTimeout(function() {
       	if(!isValid){
@@ -51,6 +47,6 @@ module.exports = {
       	}else{
 	      	return exits.success(inputs);
 	      }
-      },3000);
+      },2000);
   }
 }

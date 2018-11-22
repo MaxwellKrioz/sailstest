@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-12 table-responsive-md">
+		<h2 chass="mb-4">My Orders</h2>
+		<% if(orders && orders.length > 0){%>
+		<div class="row justify-content-md-center">
+			<div class="col-11">
+				<table class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col col-2">Order #</th>
+							<th scope="col">Status</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% orders.forEach(function(order){%>
+						<tr>
+							<td class="align-middle"><%=order.id//should be number%></td>
+							<td class="align-middle"><%=order.status%></td>
+							<td class="align-middle">$ <%=order.cartValue.totalCost%></td>
+							<td></td>
+						</tr>
+						<%});%>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<% }else{%>
+			<span>No orders are placed yet</span>
+		<%}%>
+	</div>
+</div>

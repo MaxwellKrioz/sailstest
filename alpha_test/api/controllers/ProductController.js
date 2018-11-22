@@ -6,13 +6,9 @@
  */
 
 module.exports = {
-  list: function(req, res){
-		Product.find({}).exec(function(err,products){
-			if(err){
-				res.send(500,{error:'DB Error'});
-			}
-			return res.view('pages/products/list',{products:products});
-		});
+  list: async function(req, res){
+		var list = await Product.find({}).populate("sizes",{sort:"code DESC"});
+		return res.view('pages/products/list',{products:list});			
 	},
 	get: async function(req,res){
 		var id = req.param("id");		

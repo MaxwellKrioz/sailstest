@@ -29,6 +29,7 @@ module.exports = {
       cart: inputs.cart,
       customer: inputs.customer,
       payment: inputs.payment,
+      status:'success'
     };    
     var orderRegistry = await Orders.create(orderObj)
     .tolerate(function(err,sft){
@@ -38,7 +39,7 @@ module.exports = {
     //.intercept({name: 'UsageError'}, 'invalid')
     .fetch();   
 
-    await Cart.drop({id:inputs.cart});
+    await Cart.update({id:inputs.cart}).set({active:'false'});
     //var tetra = await ProductSizes.create(sizesObj).fetch();    
     return exits.success(orderRegistry);
   }

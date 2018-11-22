@@ -1,6 +1,10 @@
 <div class="row">
 <% if(products){ 
-	products.forEach(function(product){
+	products.forEach(function(product){		
+			var validSizes = product.sizes.filter(function(key) {
+			  return key.stock > 0;
+			});
+			if(validSizes){
 		%>
 	<div class="col-12 col-sm-3 product-container">
 		<a class="product-link" href="/products/<%=product.id%>">				
@@ -12,12 +16,20 @@
 				<hr/>
 				<span class="product-description"><%=product.description%></span>
 			</p>
-			<p class="text-right">
+			<p>
+				<ul class="product-sizes">
+				<% product.sizes.forEach(function(size){
+					if(size.stock>0){%>
+					<li><%=size.code%></li>
+				<%}});%>
+				</ul>
+			</p>
+			<p  class="text-right">
 				<span><b>$<%=product.price%></b></span>
 			</p>
 		</a>
 	</div>
-<% }); }else{%>
+<%} }); }else{%>
 	<h2>IT IS EMPTY!</h2>
 <% }%>
 </div>
