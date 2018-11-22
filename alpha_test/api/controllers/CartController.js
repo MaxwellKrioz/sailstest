@@ -62,6 +62,7 @@ module.exports = {
   	var myCustomer = await sails.helpers.customer.getcustomer(false,secId);
   	var cart = await sails.helpers.cart.add(myCustomer.mail,inputs.product,inputs.quantity,inputs.size)
     .tolerate("outOfStock", () => {
+    	console.log("watdafu");
       return res.redirect('/cart',{message:"boop",error:err});
     });
   	return res.redirect('/cart');

@@ -30,38 +30,40 @@
 					</small>
 					<br/>
 					<strong>
-						<table class="col-4 table float-right text-right">
+						<table class="col table float-right text-right table-bordered">
 							<tbody>
-								<td>Total</td>
-								<td><%=cart.totalCost%></td>
+								<td>Total: </td>
+								<td>$ <%=cart.totalCost%></td>
 							</tbody>
 						</table>
 					</strong>
 				</div>
 				<div class="col col-6">
-					<form>
-						<h5>Payment method</h5>
-						<div class="form-group mb-3">
-					    <label for="name">Card Bank</label>
-		          <select class="form-control" id="exampleFormControlSelect1">
-					      <option value="1">Bank 01</option>
-					      <option value="2">Bank 02</option>
-					    </select>
-					  </div>
+					<form id="order_form" class="ajax-form" action="/order/create" method="POST">
+						<h5 class="mb-3">Payment method</h5>
 						<div class="row mb-3">
-					    <div class="col-9">
-					      <input type="text" class="form-control" placeholder="Card Number">
+					    <div class="col-6 form-group">
+					    	<label for="card_number"><small>Card Number</small></label>
+					      <input id="card_number" name="card_number" type="text" class="form-control" required="true" type="number" maxlength="16">
 					    </div>
-					    <div class="col-3">
-					      <input type="text" class="form-control" placeholder="Nip">
+					    <div class="col-3 form-group pr-1">
+					    	<label for="exp_month"><small>Expiration</small></label>						   
+					      <input id="exp_month" name="exp_month" type="text" class="form-control" required="true"  placeholder="MM" type="number" maxlength="2">					   
 					    </div>
-					    <div class="col-12 mt-3">
-					    	<input type="text" class="form-control" placeholder="Expiration date">
-					    </div>
+					    <div class="col-3 form-group pl-1">
+					    	<label for="exp_year"><small>date</small></label>
+					      <input id="exp_year" name="exp_year" type="text" class="form-control" required="true" placeholder="YY" type="number" maxlength="2">
+						  </div>
 					  </div>
-					  <div class="form-group">
-					    <label for="name">Card owner</label>
-					    <input type="text" class="form-control" id="name" placeholder="Jhon Doe">
+					  <div class="row mb-3">
+					    <div class="col-6 form-group">
+					    	<label for="name"><small>Card owner</small></label>
+					      <input id="name" name="name" type="text" class="form-control" required="true"> 
+					    </div>
+					    <div class="col-4 form-group">
+					    	<label for="nip"><small>Nip</small></label>
+					      <input id="nip" name="nip" type="text" class="form-control col" required="true" type="number" maxlength="4">					   
+					    </div>
 					  </div>
 					  <div class="form-group text-right">
 					  	<button type="submit" class="btn btn-lg btn-success">Place Order</button>

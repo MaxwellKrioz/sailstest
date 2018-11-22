@@ -22,11 +22,13 @@ module.exports.routes = {
   'GET /products/list': 'ProductController.list',
   'GET /products/:id': 'ProductController.get',  
 
-  'GET /order/' :'OrderController.list',
+  'GET /order/list' :'OrderController.list',
   'GET /order/create' :'OrderController.create',
   'GET /order/:id' :'OrderController.get',
 
-  'POST /cart/add':'CartController.add',
+  'POST /order/validation' : 'OrderController.validation',
+
+  'POST /cart/add':'CartController.add',  
 
   //'POST /checkout/finish': {action:'orders/create',},
   

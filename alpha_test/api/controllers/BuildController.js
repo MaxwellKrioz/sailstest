@@ -14,7 +14,7 @@ module.exports = {
 		res.redirect('/products/list');
 	},
 	build: async function(req,res){
-		var entries = await sails.helpers.build.getjson(); 
+		var entries = await sails.helpers.build.getjson('baseProduct'); 
 		var me = res;   
     var customer  = await sails.helpers.customer.createcustomer(
     	"alpha_test@test.com",

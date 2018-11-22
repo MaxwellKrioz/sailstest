@@ -1,7 +1,10 @@
 
 module.exports = {
   inputs: {
-
+    file: {
+      type:"string",
+      required:true
+    }
   },
 
 
@@ -12,7 +15,7 @@ module.exports = {
 
   fn: async function (inputs, exits) {
   	const jsonfile = require('jsonfile');
-    var file = './assets/json/baseProduct.json'; 
+    var file = './assets/json/'+inputs.file+'.json'; 
     var entries = [];
     await jsonfile.readFile(file, function (err, obj) {
       if (err) {

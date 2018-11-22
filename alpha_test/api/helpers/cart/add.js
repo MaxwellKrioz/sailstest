@@ -24,7 +24,6 @@ module.exports = {
     },
 
     outOfStock: {
-      name: "outofstock",
       description: 'The selected product is out of stock'
     }
   },
@@ -41,6 +40,7 @@ module.exports = {
     var maxReq = sizeFind.stock;
     var sizeId = sizeFind.id;
     if(inputs.quantity>maxReq){
+      console.log("verify: ",inputs.quantity,maxReq);
       return exits.outOfStock();
     }
     if (!customer.cart || customer.cart.length <= 0){
@@ -86,13 +86,11 @@ module.exports = {
           });
         }
         var totalCost = customer.cart[0].totalCost + entryCost;
-        console.log("pop",totalCost);
         var newCart = await Cart.update({id:cart_id}).set({products:tmpProducts,totalCost:totalCost}).fetch();
         await Sizes.update({id:sizeId}).set({stock:(maxReq-inputs.quantity)});
       }else{
-        return exits.success(newCart);
+        return exits.success(customer.cart);
       }
-      return exits.success(newCart);
     }
     return exits.success(customer.cart);
   }

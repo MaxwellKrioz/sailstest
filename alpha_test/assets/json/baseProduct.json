@@ -4,14 +4,14 @@
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 125.50,
 		"image": "/cdn/dress-01.jpg",
-		"sizes": [{"XS":3},{"S":1}]		
+		"sizes": [{"XS":3},{"S":2}]		
 	},
 	{
 		"name":"White Dress",
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 299.99,
 		"image": "/cdn/dress-02.jpg",
-		"sizes": [{"XS":3},{"S":1}]
+		"sizes": [{"XS":3},{"S":2}]
 	},
 	{
 		"name":"Blue Dress",
@@ -19,20 +19,20 @@
 		"price": 340,
 		"stock": 2,
 		"image": "/cdn/dress-03.jpg",
-		"sizes": [{"XS":3},{"S":1}]
+		"sizes": [{"XS":3},{"S":2}]
 	},
 	{
 		"name":"Purple Dress",
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 299.99,
 		"image": "/cdn/dress-04.jpg",
-		"sizes": [{"XS":3},{"S":1}]
+		"sizes": [{"XS":3},{"S":2}]
 	},
 	{
 		"name":"Cream Dress",
 		"description":"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
 		"price": 299.99,
 		"image": "/cdn/dress-05.jpg",
-		"sizes": [{"XS":3},{"S":1}]
+		"sizes": [{"XS":3},{"S":2}]
 	}
 ]

@@ -39,6 +39,11 @@ module.exports = {
     var res = this.res;
 
     var customer = await Customers.findOne({mail: inputs.mail}).populate("cart");
+    var product = await Product.findOne({id:inputs.product}).populate("sizes");
+    var sizeFind = product.sizes.find(o => o.code === inputs.size);
+    var entryCost = product.price * inputs.quantity;
+    var maxReq = sizeFind.stock;
+    var sizeId = sizeFind.id
     /*var cart = await Customers.findOne({mail: inputs.mail})
         .populate("cart")
         .exec(console.log);*/
@@ -71,13 +76,13 @@ module.exports = {
             sizes:[{size:inputs.size,quantity:inputs.quantity}]
           });
         }
-
-        var newCart = await Cart.update({id:cart_id}).set({products:tmpProducts}).fetch();     
+        var totalCost = customer.cart[0].totalCost - entryCost;
+        var newCart = await Cart.update({id:cart_id}).set({products:tmpProducts,totalCost:totalCost}).fetch();
+        await Sizes.update({id:sizeId}).set({stock:(maxReq+inputs.quantity)});     
       }else{
         return exits.success(customer.cart);
       }
-      return exits.success(newCart);
     }
-    return exits.success(cart);
+    return exits.success(customer.cart);
   }
 };

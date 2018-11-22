@@ -41,7 +41,9 @@ module.exports = {
       image: inputs.image,
     };    
     var productRegistry = await Product.create(productObj)
-    //.intercept('E_UNIQUE', 'sameItem')
+    .tolerate('E_UNIQUE', function(){
+      console.log("Match ignored");
+    })
     //.intercept({name: 'UsageError'}, 'invalid')
     .fetch();   
     //var tetra = await ProductSizes.create(sizesObj).fetch();    
