@@ -9,28 +9,30 @@
  */
 
 module.exports.routes = {
-  '/': 'BuildController.firstInstance', 
+  '/': 'BuildController.firstInstance',
 
   'GET /build' :'BuildController.build',
 
-  'GET /cart/' :'CartController.get',  
+  'GET /cart/' :'CartController.get',
   'GET /cart/view' :'CartController.get',
 
-  'GET /cart/update/:option/' :'CartController.update',  
-  'GET /cart/remove' :'CartController.remove',  
+  'GET /cart/update/:option/' :'CartController.update',
+  'GET /cart/remove' :'CartController.remove',
 
   'GET /products/list': 'ProductController.list',
-  'GET /products/:id': 'ProductController.get',  
+  'GET /products/:id': 'ProductController.get',
 
   'GET /order/list' :'OrderController.list',
   'GET /order/create' :'OrderController.create',
   'GET /order/:id' :'OrderController.get',
 
+  'GET /order/success' :'OrderController.finish',
+
   'POST /order/validation' : 'OrderController.validation',
 
-  'POST /cart/add':'CartController.add',  
+  'POST /cart/add':'CartController.add',
 
   //'POST /checkout/finish': {action:'orders/create',},
-  
+
   //'POST /customer/login':  {action:'customer/login'}
 };
